@@ -56,7 +56,7 @@ describe('closures', function () {
 	describe('counterFactory', function() {
 		it('should exist', function() {
 			expect(counterFactory).toBeDefined();
-			expect(counter).toBeDefined();
+			expect(counter).toBeDefined();	
 		})
 
 		it('should be a module', function() {

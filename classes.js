@@ -31,6 +31,17 @@
 
 //Code Here
 
+function Employee(first_name, last_name, email, age){
+    this.first_name = first_name,
+    this.last_name =last_name,
+    this.email = email,
+    this.age = age
+  }
+
+  Employee.prototype.makeWidget = function(){
+    return `${this.first_name} ${this.last_name} Widget`
+  }
+
 
 ////////// PROBLEM 2 //////////
 
@@ -49,12 +60,24 @@
 
 //Code Here
 
+class Manager extends Employee {
+  constructor(first_name, last_name, email, age, reports){
+    super(first_name, last_name, email, age)
+    this.reports = [];
+  }
+  hire(report){
+    this.reports.push(report)
+  }
+  fire(index){
+      this.reports.splice(index, 1)}
+}
 
 ////////// PROBLEM 3 //////////
 
 /*
   Managers for Widget Co. get promoted when they get more employees, and get a bonus when they fire employees.
-  create a class ProgressiveManager that extends Manager.  A Progressive Manager has all of the same properties as a manager with the following additional properties:
+  create a class ProgressiveManager that extends Manager.  A Progressive Manager has all of the same properties as a manager 
+  with the following additional properties:
     - title - default 'Not a manager'
     - bonus - default 0
 
@@ -73,7 +96,38 @@
 
 //Code Here
 
-
+class ProgressiveManager extends Manager{
+  constructor(first_name, last_name, email, age, reports, title, bonus){
+    super(first_name, last_name, email, age, reports)
+    this.title = 'Not a manager'
+    this.bonus = 0
+  }
+  hire(){
+    super.hire()
+    let asdf = this.reports.length;
+      if (asdf === 0){
+        this.title = 'Not a manager'
+      return this.title}
+      else if (asdf > 0 && asdf < 4){
+        this.title = 'Barely Manager'
+        return this.title}
+      else if (asdf > 3 && asdf < 9){
+        this.title = 'Mostly Manager'
+        return this.title}
+      else if (asdf > 10 && asdf < 49){
+        this.title = 'Manager'
+        return this.title}
+      else if (asdf >50 && asdf < 101){
+        this.title = 'Manager Plus'
+        return this.title}
+      else if (asdf > 100){
+        this.title = 'Bestest Manager'
+        return this.title}
+  }
+  fire(index){
+      this.bonus += 100
+  }
+}
 
 ////////// PROBLEM 4 - Black Diamond //////////
 
